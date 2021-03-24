@@ -1,13 +1,13 @@
 import * as React from 'react'
 import Link from 'next/link'
 
-const Header = ({ pathname }) => (
+const Header = () => (
   <header>
     <Link href="/">
-      <a className={pathname === '/' ? 'is-active' : ''}>Home</a>
+      <a>Home</a>
     </Link>{' '}
     <Link href="/about">
-      <a className={pathname === '/about' ? 'is-active' : ''}>About</a>
+      <a>About</a>
     </Link>
   </header>
 )
