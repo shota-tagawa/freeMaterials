@@ -7,7 +7,7 @@ const MenuButton = (props: MenuButtonProps) => {
   const { onClick, className } = props;
 
   return (
-    <button onClick={onClick} className={`inline-flex ${className}`}>
+    <button onClick={onClick} className={`inline-flex ${className ? className : ''}`}>
       <span className="material-icons text-white">menu</span>
     </button>
   )

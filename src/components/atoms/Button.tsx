@@ -10,7 +10,7 @@ const Button = (props: ButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className={`bg-gradient-to-r bg-black text-white py-2 px-7 rounded-full ${className}`}
+      className={`bg-gradient-to-r bg-black text-white py-2 px-7 rounded-full ${className ? className : ''}`}
     >
       {children}
     </button>

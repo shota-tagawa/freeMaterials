@@ -9,7 +9,7 @@ const Pic = (props: PicProps) => {
 
   return (
     <div
-      className={`bg-cover bg-center ${className}`}
+      className={`bg-cover bg-center ${className ? className : ''}`}
       style={{ backgroundImage: `url(${url})` }}
     />
   )
