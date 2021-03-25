@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { auth } from '../firebase';
 
 const initialState = {
   uid: 'hello',
@@ -24,15 +25,43 @@ const slice = createSlice({
   },
 });
 
-const firebaseSignIn = () => {
-  return async (dispacth) => {
+export const firebaseSignUp = (email: string, password: string) => {
+  return async (dispatch) => {
+    auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        dispatch(signIn({
+          uid: userCredential.user.uid
+        }))
+      })
+      .catch(() => {
+        alert('作成に失敗したようです。')
+      })
+  }
+}
 
+export const firebaseSignIn = (email: string, password: string) => {
+  return async (dispatch) => {
+    auth.signInWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        dispatch(signIn({
+          uid: userCredential.user.uid
+        }))
+      })
+      .catch(() => {
+        alert('ログイン成功');
+      })
   }
 };
 
-const firebaseSignOut = () => {
+export const firebaseSignOut = () => {
   return async (dispatch) => {
-
+    auth.signOut()
+      .then(() => {
+        dispatch(signOut());
+      })
+      .catch(() => {
+        alert('ログアウト失敗')
+      })
   }
 }
 
