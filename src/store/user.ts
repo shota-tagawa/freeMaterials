@@ -60,6 +60,7 @@ export const firebaseSignOut = () => {
     auth.signOut()
       .then(() => {
         dispatch(signOut());
+        Router.push('/signin')
       })
       .catch(() => {
         alert('ログアウト失敗')

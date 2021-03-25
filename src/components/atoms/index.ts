@@ -5,3 +5,4 @@ export { default as TextField } from './TextArea';
 export { default as GridCol } from './GridCol';
 export { default as PageTitle } from './PageTitle';
 export { default as LinkText } from './LinkText';
+export { default as DrawerMenuItem } from './DrawerMenuItem';

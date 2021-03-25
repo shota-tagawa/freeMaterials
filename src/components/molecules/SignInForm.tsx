@@ -17,7 +17,7 @@ const SignInForm = (props: SignInFormProps) => {
   const inputPassword = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
 
   return (
-    <div className={className}>
+    <div className={className ? className : ''}>
       <div className="mb-4">
         <TextField
           className={'w-full sm:w-80'}

@@ -21,7 +21,7 @@ const TextField = (props: TextFieldProps) => {
           (
             <>
               <input
-                className={`rounded border-solid border-2 border-blue-400 p-1 ${className}`}
+                className={`rounded border-solid border-2 border-blue-400 p-1 ${className ? className : ''}`}
                 type={type || 'text'}
                 value={value}
                 placeholder={placeholder}

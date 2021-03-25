@@ -2,9 +2,11 @@ import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 
 import userReducer from './user';
+import menuReducer from './menu';
 
 const reducer = combineReducers({
-  user: userReducer
+  user: userReducer,
+  menu: menuReducer
 })
 
 

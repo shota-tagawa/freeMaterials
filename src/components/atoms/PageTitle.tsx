@@ -8,7 +8,7 @@ const PageTitle = (props: PageTitleProps) => {
 
   return (
     <h1
-      className={`text-lg mb-4 sm:text-2xl ${className}`}
+      className={`text-lg mb-4 sm:text-2xl ${className ? className : ''}`}
     >
       {text}
     </h1>
