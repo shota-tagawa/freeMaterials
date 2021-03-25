@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { auth } from '../firebase';
+import Router from 'next/router';
 
 const initialState = {
   uid: 'hello',
@@ -46,9 +47,10 @@ export const firebaseSignIn = (email: string, password: string) => {
         dispatch(signIn({
           uid: userCredential.user.uid
         }))
+        Router.push('/')
       })
       .catch(() => {
-        alert('ログイン成功');
+        alert('ログイン失敗');
       })
   }
 };
