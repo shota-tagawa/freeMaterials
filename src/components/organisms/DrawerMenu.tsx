@@ -10,17 +10,27 @@ const DrawerMenu = () => {
   const menuOpen = useSelector((state: RootState) => state.menu.menuOpen);
   const isSignIn = useSelector((state: RootState) => state.user.isSignIn);
 
+  const userMenuItems: { slug: string, text: string }[] = [
+    { slug: '/mypage', text: 'マイページ' },
+    { slug: '/add-post', text: '新規投稿' },
+  ]
+
+  const guestMenuItems: { slug: string, text: string }[] = [
+    { slug: '/signin', text: 'サインイン' },
+    { slug: '/signup', text: 'サインアップ' },
+  ]
+
   return (
     <>
       <div className={`px-4 py-8 bg-gray-800 text-gray-300 fixed top-0 right-0 z-50 h-full w-7/12 md:text-lg md:py-16 md:px-8 transition-all ${menuOpen || 'transform translate-x-full'}`}>
         <ul>
           {isSignIn ?
             <>
-              <DrawerMenuItem>
-                <Link href="/mypage">
-                  <a>マイページ</a>
-                </Link>
-              </DrawerMenuItem>
+              {userMenuItems.map(userMenuItem => (
+                <DrawerMenuItem key={userMenuItem.slug}>
+                  <Link href={userMenuItem.slug}><a>{userMenuItem.text}</a></Link>
+                </DrawerMenuItem>
+              ))}
               <DrawerMenuItem>
                 <span
                   className="cursor-pointer"
@@ -31,12 +41,11 @@ const DrawerMenu = () => {
             </>
             :
             <>
-              <DrawerMenuItem>
-                <Link href="/signin"><a>サインイン</a></Link>
-              </DrawerMenuItem>
-              <DrawerMenuItem>
-                <Link href="/signup"><a>サインアップ</a></Link>
-              </DrawerMenuItem>
+              {guestMenuItems.map(guestMenuItem => (
+                <DrawerMenuItem key={guestMenuItem.slug}>
+                  <Link href={guestMenuItem.slug}><a>{guestMenuItem.text}</a></Link>
+                </DrawerMenuItem>
+              ))}
             </>
           }
         </ul>
