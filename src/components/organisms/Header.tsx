@@ -13,7 +13,7 @@ const Header = (props: HeaderProps) => {
   const dispatch = useDispatch();
 
   return (
-    <header className={className}>
+    <header className={className ? className : ''}>
       <nav className="bg-gray-800 text-gray-300 flex items-center py-2 px-4">
         <p>
           <Link href="/">
