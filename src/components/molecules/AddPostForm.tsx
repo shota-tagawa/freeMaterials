@@ -65,7 +65,7 @@ const AddPostForm = (props: AddPostFormProps) => {
   }
 
   return (
-    <div className={className && className}>
+    <div className={className ? className : ''}>
       <ImageUploadButton
         onChange={(e) => { inputImage(e) }}
         imageURL={imageURL}
