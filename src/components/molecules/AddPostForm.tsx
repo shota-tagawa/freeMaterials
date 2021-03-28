@@ -1,4 +1,6 @@
 import { ChangeEvent, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import Router from 'next/router';
 import { useInputImage, useRondomString } from '../../hooks';
 import { db, storage } from '../../firebase';
@@ -10,6 +12,7 @@ interface AddPostFormProps {
 }
 
 const AddPostForm = (props: AddPostFormProps) => {
+  const uid = useSelector((state:RootState) => state.user.uid);
   const { className } = props;
   const { imageURL, imageFile, error, inputImage } = useInputImage();
   const [title, setTitle] = useState<string>('');
@@ -47,14 +50,15 @@ const AddPostForm = (props: AddPostFormProps) => {
     const id = useRondomString(24);
     const storageRef = storage.child(`${id}.${fileType}`);
     const data = await storageRef.put(imageFile)
-    const imgPath = await data.ref.getDownloadURL();
+    const imgurl = await data.ref.getDownloadURL();
     // ********************************
 
     // ********************************
     // Firestoreに投稿内容を保存する
     db.collection('posts').doc(id).set({
       id,
-      imgPath,
+      uid,
+      imgurl,
       title,
       stars: [],
       tags,
