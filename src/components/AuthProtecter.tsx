@@ -9,7 +9,7 @@ const AuthProtecter = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    return auth.onAuthStateChanged((user) => {
       if (user) {
         dispatch(signIn({
           uid: user.uid,

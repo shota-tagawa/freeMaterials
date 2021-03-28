@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { auth } from '../firebase';
+import { auth, db } from '../firebase';
 import Router from 'next/router';
 
 const initialState = {
@@ -33,6 +33,13 @@ export const firebaseSignUp = (email: string, password: string) => {
         dispatch(signIn({
           uid: userCredential.user.uid
         }))
+        db.collection('users').doc(userCredential.user.uid).set({
+          uid: userCredential.user.uid,
+          displayName: '',
+          photoURL: '',
+          selfIntroduction: '',
+        });
+        Router.push('/mypage');
       })
       .catch(() => {
         alert('作成に失敗したようです。')
