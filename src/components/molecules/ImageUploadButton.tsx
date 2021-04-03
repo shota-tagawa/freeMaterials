@@ -12,7 +12,7 @@ const ImageUploadButton = (props: ImageUploadButtonProps) => {
 
   return (
     <div className={className ? className : ''}>
-      {imageURL && <div className="w-full sm:w-7/12"><img src={imageURL} alt="" /></div>}
+      {imageURL && <div className="w-full sm:w-7/12 mb-4"><img src={imageURL} alt="" /></div>}
       {error && <ErrorText text={error} className="mb-2" />}
       <div>
         <label>
