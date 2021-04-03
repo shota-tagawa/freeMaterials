@@ -4,7 +4,7 @@ import { useSearch } from '../hooks';
 import AuthProtector from '../components/AuthProtecter';
 import { Layout, Container } from '../components/templates';
 import { GridRow } from '../components/organisms';
-import { Pagination } from '../components/molecules';
+import { Pagination, SearchForm } from '../components/molecules';
 import { PageTitle, Pic, GridCol } from '../components/atoms';
 import Head from 'next/head';
 
@@ -29,6 +29,10 @@ const Search = () => {
       <Layout>
         <Container>
           <PageTitle text={`検索結果`} />
+          <SearchForm
+            className="mb-8"
+            textFieldClassName="w-72 max-w-full"
+          />
           <GridRow>
             {results.map((result, index) => (
               <GridCol className="mb-4" key={index}>

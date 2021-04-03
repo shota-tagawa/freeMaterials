@@ -6,10 +6,12 @@ interface TextFieldProps {
   placeholder?: string
   onChange?: any,
   onClick?: any,
+  fullWidth?: boolean,
 }
 
 const TextField = (props: TextFieldProps) => {
-  const { multiline, type, className, value, placeholder, onChange, onClick } = props;
+  const { multiline, type, className, value, placeholder, onChange, onClick, fullWidth } = props;
+  
 
   return (
     <>
@@ -21,7 +23,7 @@ const TextField = (props: TextFieldProps) => {
           (
             <>
               <input
-                className={`rounded border-solid border-2 border-blue-400 p-1 ${className ? className : ''}`}
+                className={`${fullWidth ? 'w-full ' : null}rounded border-solid border-2 border-blue-400 text-black p-1 ${className ? className : null}`}
                 type={type || 'text'}
                 value={value}
                 placeholder={placeholder}
