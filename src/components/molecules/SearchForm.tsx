@@ -19,6 +19,7 @@ const SearchForm = (props: SearchFormProps) => {
   const inputSearchKeyword = (e: ChangeEvent<HTMLInputElement>) => setSearchKeyword(e.target.value);
 
   const onClickSearch = () => {
+    setSearchKeyword('');
     Router.push(`/search?keyword=${searchKeyword}`);
     dispatch(close())
   }
@@ -31,6 +32,7 @@ const SearchForm = (props: SearchFormProps) => {
           value={searchKeyword}
           fullWidth={fullWidth}
           className={textFieldClassName}
+          placeholder='素材を検索'
         />
       </div>
       <Button onClick={onClickSearch}>検索</Button>
