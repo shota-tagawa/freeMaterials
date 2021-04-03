@@ -32,7 +32,7 @@ const index = client.initIndex(ALGOLIA_INDEX_NAME)
 // 新規投稿
 exports.onPostCreated = functions.firestore.document('posts/{id}').onCreate((snap, context) => {
   const data = snap.data()
-  data.objectID = context.params.id
+  data.objectID = context.params.id;
   return index.saveObject(data)
 })
 

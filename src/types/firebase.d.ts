@@ -4,3 +4,14 @@ export type firebaseUserData = {
   photoURL: string,
   selfIntroduction: string,
 }
+
+export type firebasePostData = {
+  id: string,
+  uid: string,
+  imgurl: string,
+  stars: {
+    uid: string,
+    star: number,
+  }[],
+  tags: string[],
+}
