@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import Router from 'next/router';
 import { useInputImage, useRondomString } from '../../hooks';
-// import { db, storage } from '../../firebase';
+import { db, storage } from '../../firebase';
 import { Button, TextField } from '../atoms';
 import { ImageUploadButton, PostTags } from '../molecules';
 
@@ -36,7 +36,6 @@ const AddPostForm = (props: AddPostFormProps) => {
 
   const addTag = () => {
     if (tagValidations.includes(true)) return;
-
     setTags([...tags, tag]);
     setTag('');
   }
@@ -44,27 +43,27 @@ const AddPostForm = (props: AddPostFormProps) => {
   const upload = async () => {
     if (uploadValidations.includes(true)) return;
 
-    // // ********************************
-    // // 画像をストレージにアップロードする
-    // const fileType = imageFile.type === 'image/jpeg' ? 'jpg' : 'png';
-    // const id = useRondomString(24);
-    // const storageRef = storage.child(`${id}.${fileType}`);
-    // const data = await storageRef.put(imageFile)
-    // const imgurl = await data.ref.getDownloadURL();
-    // // ********************************
+    // ********************************
+    // 画像をストレージにアップロードする
+    const fileType = imageFile.type === 'image/jpeg' ? 'jpg' : 'png';
+    const id = useRondomString(24);
+    const storageRef = storage.ref().child(`${id}.${fileType}`);
+    const data = await storageRef.put(imageFile)
+    const imgurl = await data.ref.getDownloadURL();
+    // ********************************
 
-    // // ********************************
-    // // Firestoreに投稿内容を保存する
-    // db.collection('posts').doc(id).set({
-    //   id,
-    //   uid,
-    //   imgurl,
-    //   title,
-    //   stars: [],
-    //   tags,
-    // })
-    //   .then(() => Router.push('/mypage'))
-    //   .catch(() => alert('画像のアップロードに失敗しました！'))
+    // ********************************
+    // Firestoreに投稿内容を保存する
+    db.collection('posts').doc(id).set({
+      id,
+      uid,
+      imgurl,
+      title,
+      stars: [],
+      tags,
+    })
+      .then(() => Router.push('/mypage'))
+      .catch(() => alert('画像のアップロードに失敗しました！'))
     // ********************************
   }
 
