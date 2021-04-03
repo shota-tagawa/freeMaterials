@@ -5,6 +5,7 @@ export { default as GridCol } from './GridCol';
 export { default as LinkText } from './LinkText';
 export { default as MenuButton } from './MenuButton';
 export { default as PageTitle } from './PageTitle';
+export { default as PaginationButton } from './PaginationButton'
 export { default as Pic } from './Pic';
 export { default as PostTag } from './PostTag';
 export { default as TextField } from './TextField';

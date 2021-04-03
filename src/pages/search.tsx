@@ -1,24 +1,18 @@
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { firebasePostData } from '../types/firebase';
+import { useSearch } from '../hooks';
 import AuthProtector from '../components/AuthProtecter';
 import { Layout, Container } from '../components/templates';
 import { GridRow } from '../components/organisms';
+import { Pagination } from '../components/molecules';
 import { PageTitle, Pic, GridCol } from '../components/atoms';
 import Head from 'next/head';
-const algoliasearch = require("algoliasearch");
-const client = algoliasearch(
-  process.env.ALGOLIA_ID,
-  process.env.ADMIN_API_KEY
-);
-const index = client.initIndex("freeMaterials");
-
 
 const Search = () => {
   const router = useRouter();
   const [keyword, setKeyword] = useState<string>();
   const [page, setPage] = useState<number>(0);
-  const [results, setResult] = useState<firebasePostData[]>([]);
+  const { results, resultLength } = useSearch({ keyword, page });
 
   useEffect(() => {
     if (router.asPath !== router.route) {
@@ -26,16 +20,6 @@ const Search = () => {
       router.query.page && setPage(Number(router.query.page));
     }
   }, [router])
-
-  useEffect(() => {
-    (async () => {
-      const res = await index.search(keyword, {
-        hitsPerPage: 9,
-        page
-      })
-      setResult(res.hits as firebasePostData[]);
-    })();
-  }, [keyword])
 
   return (
     <AuthProtector>
@@ -52,6 +36,11 @@ const Search = () => {
               </GridCol>
             ))}
           </GridRow>
+          <Pagination
+            baseURL={`/search/?keyword=${keyword}&`}
+            current={page}
+            length={resultLength}
+          />
         </Container>
       </Layout>
     </AuthProtector>
