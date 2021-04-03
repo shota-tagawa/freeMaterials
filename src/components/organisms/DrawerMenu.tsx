@@ -3,6 +3,7 @@ import { close } from '../../store/menu';
 import { firebaseSignOut } from '../../store/user';
 import { RootState } from '../../store';
 import { DrawerMenuItem } from '../atoms';
+import { SearchForm } from '../molecules';
 import Link from 'next/link';
 
 const DrawerMenu = () => {
@@ -38,6 +39,10 @@ const DrawerMenu = () => {
                   サインアウト
                 </span>
               </DrawerMenuItem>
+              <SearchForm
+                className="mt-8"
+                textFieldClassName="w-72 max-w-full"
+              />
             </>
             :
             <>
