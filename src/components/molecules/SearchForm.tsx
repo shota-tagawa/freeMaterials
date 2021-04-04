@@ -2,7 +2,7 @@ import { ChangeEvent, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Router from 'next/router';
 import { close } from '../../store/menu';
-import { RootState } from '../../store';
+import { RootState } from '../../store';6
 import { Button, TextField } from '../atoms';
 
 interface SearchFormProps {
