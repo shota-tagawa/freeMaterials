@@ -4,7 +4,7 @@ interface PostTagsProps {
   className?: string,
   tags: string[],
   withDeleteButton?: boolean,
-  setTags: any
+  setTags?: any
 }
 
 const PostTags = (props: PostTagsProps) => {
