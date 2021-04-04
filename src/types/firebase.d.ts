@@ -9,6 +9,7 @@ export type firebasePostData = {
   id: string,
   uid: string,
   imgurl: string,
+  title: string,
   stars: {
     uid: string,
     star: number,
