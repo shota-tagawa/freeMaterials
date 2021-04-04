@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSearch } from '../hooks';
+import Link from 'next/link';
 import AuthProtector from '../components/AuthProtecter';
 import { Layout, Container } from '../components/templates';
 import { GridRow } from '../components/organisms';
@@ -36,7 +37,11 @@ const Search = () => {
           <GridRow>
             {results.map((result, index) => (
               <GridCol className="mb-4" key={index}>
-                <Pic className="pt-72 cursor-pointer" url={result.imgurl} />
+                <Link href={`/post/${result.id}`}>
+                  <a>
+                    <Pic className="pt-72 cursor-pointer" url={result.imgurl} />
+                  </a>
+                </Link>
               </GridCol>
             ))}
           </GridRow>
