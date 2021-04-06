@@ -30,6 +30,7 @@ const Post = () => {
                   <PostTags
                     className="mb-2"
                     tags={post.tags}
+                    isSearchQuery={true}
                   />
                   <div>
                     <a href={post.imgurl} download={post.title}>
