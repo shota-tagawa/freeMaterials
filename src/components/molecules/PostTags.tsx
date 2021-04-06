@@ -5,10 +5,11 @@ interface PostTagsProps {
   tags: string[],
   withDeleteButton?: boolean,
   setTags?: any
+  isSearchQuery?: boolean,
 }
 
 const PostTags = (props: PostTagsProps) => {
-  const { className, tags, withDeleteButton, setTags } = props;
+  const { className, tags, withDeleteButton, setTags,isSearchQuery } = props;
   
   const deleteTag = (target: string) => setTags(tags.filter(tag => tag !== target));
 
@@ -20,6 +21,7 @@ const PostTags = (props: PostTagsProps) => {
           key={tag}
           withDeleteButton={withDeleteButton}
           onClick={() => { deleteTag(tag) }}
+          isSearchQuery={isSearchQuery}
         />
       ))}
     </div>
