@@ -33,6 +33,7 @@ const Search = () => {
           <SearchForm
             className="mb-8"
             textFieldClassName="w-72 max-w-full"
+            defaultQuery={keyword}
           />
           <GridRow>
             {results.map((result, index) => (

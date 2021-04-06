@@ -1,19 +1,19 @@
-import { ChangeEvent, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { ChangeEvent, useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 import { close } from '../../store/menu';
-import { RootState } from '../../store';6
 import { Button, TextField } from '../atoms';
 
 interface SearchFormProps {
   className?: string,
   fullWidth?: boolean,
   textFieldClassName?: string,
+  defaultQuery?: string,
 }
 
 const SearchForm = (props: SearchFormProps) => {
   const dispatch = useDispatch();
-  const { className, fullWidth, textFieldClassName } = props;
+  const { className, fullWidth, textFieldClassName, defaultQuery } = props;
   const [searchKeyword, setSearchKeyword] = useState<string>('');
 
   const inputSearchKeyword = (e: ChangeEvent<HTMLInputElement>) => setSearchKeyword(e.target.value);
@@ -23,6 +23,10 @@ const SearchForm = (props: SearchFormProps) => {
     Router.push(`/search?keyword=${searchKeyword}`);
     dispatch(close())
   }
+
+  useEffect(() => {
+    setSearchKeyword(defaultQuery);
+  }, [defaultQuery])
 
   return (
     <div className={className ? className : null}>
