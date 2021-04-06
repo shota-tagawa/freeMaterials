@@ -25,7 +25,7 @@ const SearchForm = (props: SearchFormProps) => {
   }
 
   useEffect(() => {
-    setSearchKeyword(defaultQuery);
+    defaultQuery && setSearchKeyword(defaultQuery);
   }, [defaultQuery])
 
   return (
